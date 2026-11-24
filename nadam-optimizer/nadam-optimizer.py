@@ -10,7 +10,7 @@ def nadam_step(w: list, m: list, v: list, grad: list, lr: float = 0.002, beta1: 
     new_v = beta2*v + (1-beta2)*(grad**2)
 
     m_tilda = beta1*new_m + (1-beta1)*grad
-    new_w = w - lr*(m_tilda/(np.sqrt(new_v) + eps))
+    new_w = w - lr*((beta1*new_m + (1-beta1)*grad)/(np.sqrt(new_v) + eps))
     return {
         "new_w": new_w,
         "new_m": new_m,
